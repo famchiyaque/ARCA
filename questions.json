@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "station": "Structure",
+    "text": "You wake up and notice a structural creak in the main column holding the dome. It’s subtle, and reporting it would delay the day’s schedule. What do you do?",
+    "options": [
+      {
+        "text": "Report it immediately. Safety first.",
+        "alignment": "dome",
+        "resourceDelta": -1
+      },
+      {
+        "text": "Wait to see if others notice too.",
+        "alignment": "neutral",
+        "resourceDelta": 0
+      },
+      {
+        "text": "Ignore it. It's probably nothing.",
+        "alignment": "freedom",
+        "resourceDelta": 0
+      },
+      {
+        "text": "Try to check it yourself.",
+        "alignment": "independent",
+        "resourceDelta": -2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "station": "Functionality",
+    "text": "The AI assigns you to sewage maintenance for the week. You're a trained medical professional. What do you do?",
+    "options": [
+      {
+        "text": "Obey without question.",
+        "alignment": "dome",
+        "resourceDelta": -1
+      },
+      {
+        "text": "Ask the AI for reassignment.",
+        "alignment": "neutral",
+        "resourceDelta": 0
+      },
+      {
+        "text": "Refuse the task.",
+        "alignment": "freedom",
+        "resourceDelta": -2
+      },
+      {
+        "text": "Secretly sabotage your assignment to avoid doing it.",
+        "alignment": "rebellion",
+        "resourceDelta": -3
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "station": "Life Inside",
+    "text": "Every day is the same. You begin to feel numb. Do you suggest to others a secret storytelling circle at night?",
+    "options": [
+      {
+        "text": "Yes.",
+        "alignment": "freedom",
+        "resourceDelta": 1
+      },
+      {
+        "text": "No.",
+        "alignment": "dome",
+        "resourceDelta": 0
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "station": "Life Outside",
+    "text": "Someone from outside knocks at the airlock. They are starving. The AI forbids entry. What do you do?",
+    "options": [
+      {
+        "text": "Let them in.",
+        "alignment": "freedom",
+        "resourceDelta": -2
+      },
+      {
+        "text": "Follow protocol and walk away.",
+        "alignment": "dome",
+        "resourceDelta": 0
+      },
+      {
+        "text": "Leave some supplies outside.",
+        "alignment": "compassionate",
+        "resourceDelta": -1
+      },
+      {
+        "text": "Ask others to challenge the AI's command.",
+        "alignment": "rebellion",
+        "resourceDelta": -2
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "station": "Final Decision",
+    "text": "Two helmets are presented: one for the Dome (safety, unity) and one for Outside (freedom, risk). Which do you choose?",
+    "options": [
+      {
+        "text": "The AI helmet.",
+        "alignment": "dome",
+        "resourceDelta": 0
+      },
+      {
+        "text": "The freedom helmet.",
+        "alignment": "freedom",
+        "resourceDelta": 0
+      }
+    ]
+  }
+]

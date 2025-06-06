@@ -1,0 +1,36 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Environment variables (if you store secrets here)
+.env
+
+# IDE/editor settings
+.idea/
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Python coverage reports
+.coverage
+htmlcov/
+
+# pyenv
+.python-version

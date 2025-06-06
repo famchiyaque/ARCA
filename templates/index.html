@@ -1,0 +1,7 @@
+<!-- templates/index.html -->
+<h2>Welcome to the ARCA dome</h2>
+<p>The world is no longer as you know it. Answer the following questions truthfully...</p>
+<form method="post" action="{{ url_for('start_quiz') }}">
+  <input type="text" name="name" placeholder="Enter your name" required />
+  <button type="submit">Start</button>
+</form>

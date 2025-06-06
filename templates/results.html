@@ -1,0 +1,22 @@
+<!-- templates/results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ARCA Dome Verdict</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Average Remaining Resources: {{ avg_resources }}</h2>
+    <!-- <h1>{{ verdict }}</h1> -->
+    <!-- <p>Thanks for participating, {{ name }}.</p> -->
+    <h3>Your responses:</h3>
+    <ul>
+      {% for q, a in answers %}
+        <li><strong>{{ q }}</strong>: {{ a }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

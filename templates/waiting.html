@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scenario {{ scenario_number }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    {% if scenario_number != 'end' %}
+      <div class="progress-bar">
+        Escenario
+        {% for i in range(1, 6) %}
+          <div class="progress-step {% if i == scenario_number|int %}active{% endif %}">{{ i }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if scenario_number == 'end' %}
+      <h2>respuesta 5 guardado...</h2>
+      <p>De favor dirigir su atención a la pantalla principal para ver los resultados.</p>
+      <p>Ya puedes cerrar esta pestaña</p>
+    {% else %}
+      <h2>respuesta {{ scenario_number }} guardado...</h2>
+      <p>De favor esperar hasta que el host le indique continuar al siguiente escenario.</p>
+        <form method="GET" action="{{ url_for('question', number=scenario_number|int + 1) }}">
+          <button type="submit">Continue</button>
+        </form>
+    {% endif %}
+
+    <!-- <h2>respuesta {{ scenario_number }} guardado...</h2> -->
+
+    <!-- {% if scenario_number != 'end' %}
+      {% if scenario_number|int == 5 %}
+        <p>De favor dirigir su atención a la pantalla principal para ver los resultados.</p>
+      {% else %}
+        <p>De favor esperar hasta que el host le indique continuar al siguiente escenario.</p>
+        <form method="GET" action="{{ url_for('question', number=scenario_number|int + 1) }}">
+          <button type="submit">Continue</button>
+        </form>
+      {% endif %}
+    {% else %}
+      <p>You have completed all scenarios.</p>
+    {% endif %} -->
+
+  </div>
+</body>
+</html>

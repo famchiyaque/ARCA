@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scenario {{ scenario_number }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    {% if scenario_number != 'end' %}
+      <div class="progress-bar">
+        Escenario
+        {% for i in range(1, 6) %}
+          <div class="progress-step {% if i == scenario_number|int %}active{% endif %}">{{ i }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <h2>Scenario {{ scenario_number }}</h2>
+
+    <div class="scenario">
+      <p><strong>{{ question.station }}</strong></p>
+      <p>{{ question.text }}</p>
+    </div>
+
+    <form method="POST" action="/answer">
+      <input type="hidden" name="scenario_number" value="{{ scenario_number }}">
+
+      {% for option in question.options %}
+        <div class="option-block">
+          <button type="submit" name="answer" value="{{ loop.index0 }}">
+            {{ option.text }} 
+            <!-- {% if option.resourceDelta > 0 %}
+              (-{{ option.resourceDelta }} resources)
+            {% elif option.resourceDelta < 0 %}
+              (+{{ option.resourceDelta | abs }} resources)
+            {% endif %} -->
+          </button>
+        </div>
+      {% endfor %}
+
+    </form>
+  </div>
+</body>
+</html>

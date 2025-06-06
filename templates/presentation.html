@@ -1,0 +1,123 @@
+<!-- templates/presentation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto ARCA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='opener.css') }}" >
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='bg.webp') }}");
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="arca-title">Proyecto ARCA</h2>
+
+  <div id="intro" class="video-container">
+    <iframe 
+      width="100%" 
+      height="100%" 
+      src="https://www.youtube.com/embed/xq8qqftkN_c?autoplay=1&controls=1" 
+      frameborder="0" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen
+      title="Intro Video">
+    </iframe>
+    <!-- <h1 class="opener-title">!! Emergencia Global !!</h1>  -->
+    <!-- <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video> -->
+    <!-- <div class="controls">
+      <button onclick="nextVideo('video1', 'qr')">Next</button>
+    </div> -->
+  </div>
+
+  <!-- <div id="video2" class="video-container" style="display: none;">
+    <video id="vid2" src="/static/video2.mp4" autoplay controls></video>
+    <div class="controls">
+      <button onclick="nextVideo('video2', 'qr')">Show QR</button>
+    </div>
+  </div> -->
+
+  <div id="qr" class="video-container" style="display: none; flex-direction: column;">
+    <h1 style="margin-bottom: 20px; color: #39ff14; text-shadow: 0 0 10px #39ff14;">
+      <!-- Scan to Enter the ARCA Dome -->
+      Escanea el código para entrar al domo ARCA
+    </h1>
+    <img src="/static/qr.png" alt="QR Code" style="width: 250px; height: 250px;" />
+    <!-- <div class="controls">
+      <button onclick="nextVideo('qr', 'video2')">Next</button>
+    </div> -->
+  </div>
+
+  <!-- <div id="video2" class="video-container">
+    <h1 class="opener-title">1. La Estructura</h1> 
+    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
+    <div class="controls">
+      <button onclick="nextVideo('video2', 'video3')">Next</button>
+    </div>
+  </div> -->
+
+  <!-- <div id="video3" class="video-container">
+    <h1 class="opener-title">2. La Funcionalidad</h1> 
+    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
+
+  </div> -->
+
+  <!-- <div id="video4" class="video-container">
+    <h1 class="opener-title">3. La Vida por Dentro</h1> 
+    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
+  </div> -->
+
+  <!-- <div id="video5" class="video-container">
+    <h1 class="opener-title">4. La Vida por Fuera</h1> 
+    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
+  </div> -->
+<!-- 
+  <div id="video6" class="video-container">
+    <h1 class="opener-title">5. El Dilemna</h1> 
+    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
+  </div> -->
+
+  <!-- <script>
+    function nextVideo(currentId, nextId) {
+      const current = document.getElementById(currentId);
+      const next = document.getElementById(nextId);
+
+      current.classList.add('fade-out');
+      setTimeout(() => {
+        current.style.display = 'none';
+        current.classList.remove('fade-out');
+        next.style.display = 'flex';
+      }, 1000);
+    }
+  </script> -->
+  <script>
+    const allSections = ['intro', 'qr', 'video2', 'video3', 'video4', 'video5', 'video6'];
+  
+    function showSection(idToShow) {
+      allSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = (id === idToShow) ? 'flex' : 'none';
+      });
+    }
+  
+    async function pollState() {
+      try {
+        const res = await fetch('/get_presentation_state');
+        const data = await res.json();
+        showSection(data.section);
+      } catch (err) {
+        console.error("Error fetching presentation state:", err);
+      }
+    }
+  
+    setInterval(pollState, 2000); // Poll every 2 seconds
+    pollState(); // Initial load
+  </script>
+  
+</body>
+</html>

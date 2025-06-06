@@ -1,0 +1,73 @@
+body {
+    background-color: black;
+    color: #39ff14;
+    font-family: 'Roboto Mono', monospace;
+    /* font-family: 'Segoe UI', sans-serif; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  p {
+    color: white;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .start-input {
+    line-height: 2rem;
+    background-color: black;
+    color: #39ff14;
+    border: solid white 2px;
+    border-radius: 8px;
+  } 
+  
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #39ff14;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  input[type=\"text\"] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    width: 60%;
+  }
+  
+  .progress-bar {
+    display: flex;
+    gap: 5px;
+    margin: 20px 0;
+    justify-content: center;
+    position: absolute;
+    right: 5vw;
+    top: 3vh;
+  }
+  .progress-step {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  .progress-step.active {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }

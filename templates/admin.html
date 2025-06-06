@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Control</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Control Panel</h2>
+
+    <hr>
+
+    <!-- Presentation Navigation -->
+    <form method="post" action="/set_presentation">
+      <h3>Control Presentation View</h3>
+      <button name="section" value="intro">Video Intro</button>
+      <button name="section" value="qr">QR Code</button>
+      <!-- <button name="section" value="video2">Video Estructura</button>
+      <button name="section" value="video3">Video Funcionalidad</button>
+      <button name="section" value="video4">Video Vida Adentro</button>
+      <button name="section" value="video5">Video Vida Afuera</button>
+      <button name="section" value="video6">Video Cascos</button> -->
+    </form>
+
+    <hr>
+
+    <!-- Special Actions -->
+    <form method="post" action="/show_results" style="display:inline;">
+      <button type="submit">Show Results</button>
+    </form>
+
+    <form method="post" action="/reset_database" style="display:inline;">
+      <button type="submit" onclick="return confirm('Are you sure? This will erase all data.')">Reset Database</button>
+    </form>
+  </div>
+</body>
+</html>
