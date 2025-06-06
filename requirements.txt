@@ -25,6 +25,7 @@ Flask-SQLAlchemy==3.1.1
 fonttools==4.58.1
 freegames==2.5.3
 git-filter-repo==2.45.0
+gunicorn
 google==3.0.0
 google-ai-generativelanguage==0.6.15
 google-api-core==2.24.2
