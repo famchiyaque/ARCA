@@ -28,6 +28,7 @@ def presentation():
 def get_presentation_state():
     return jsonify(current_presentation_state)
 
+
 @app.route("/set_presentation", methods=["POST"])
 def set_presentation():
     global current_presentation_state

@@ -12,6 +12,33 @@
       background-size: cover;
       background-position: center;
     }
+
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .fade {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      pointer-events: none;
+    }
+
+    .show {
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+      pointer-events: auto;
+    }
+
+    #intro, #qr {
+      transition: opacity 1s ease-in-out;
+    }
   </style>
 </head>
 <body>
@@ -20,95 +47,85 @@
 
   <div id="intro" class="video-container">
     <iframe 
+      id="introVideo"
       width="100%" 
       height="100%" 
-      src="https://www.youtube.com/embed/xq8qqftkN_c?autoplay=1&controls=1" 
+      src="https://www.youtube.com/embed/xq8qqftkN_c?autoplay=1&controls=1&rel=0&enablejsapi=1" 
       frameborder="0" 
       allow="autoplay; encrypted-media" 
       allowfullscreen
       title="Intro Video">
     </iframe>
-    <!-- <h1 class="opener-title">!! Emergencia Global !!</h1>  -->
-    <!-- <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video> -->
-    <!-- <div class="controls">
-      <button onclick="nextVideo('video1', 'qr')">Next</button>
-    </div> -->
   </div>
-
-  <!-- <div id="video2" class="video-container" style="display: none;">
-    <video id="vid2" src="/static/video2.mp4" autoplay controls></video>
-    <div class="controls">
-      <button onclick="nextVideo('video2', 'qr')">Show QR</button>
-    </div>
-  </div> -->
 
   <div id="qr" class="video-container" style="display: none; flex-direction: column;">
     <h1 style="margin-bottom: 20px; color: #39ff14; text-shadow: 0 0 10px #39ff14;">
-      <!-- Scan to Enter the ARCA Dome -->
       Escanea el código para entrar al domo ARCA
     </h1>
     <img src="/static/qr-code.png" alt="QR Code" style="width: 250px; height: 250px;" />
-    <!-- <div class="controls">
-      <button onclick="nextVideo('qr', 'video2')">Next</button>
-    </div> -->
   </div>
 
-  <!-- <div id="video2" class="video-container">
-    <h1 class="opener-title">1. La Estructura</h1> 
-    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
-    <div class="controls">
-      <button onclick="nextVideo('video2', 'video3')">Next</button>
-    </div>
-  </div> -->
-
-  <!-- <div id="video3" class="video-container">
-    <h1 class="opener-title">2. La Funcionalidad</h1> 
-    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
-
-  </div> -->
-
-  <!-- <div id="video4" class="video-container">
-    <h1 class="opener-title">3. La Vida por Dentro</h1> 
-    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
-  </div> -->
-
-  <!-- <div id="video5" class="video-container">
-    <h1 class="opener-title">4. La Vida por Fuera</h1> 
-    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
-  </div> -->
-<!-- 
-  <div id="video6" class="video-container">
-    <h1 class="opener-title">5. El Dilemna</h1> 
-    <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
-  </div> -->
   <script>
     const allSections = ['intro', 'qr', 'video2', 'video3', 'video4', 'video5', 'video6'];
-  
+
     function showSection(idToShow) {
       allSections.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = (id === idToShow) ? 'flex' : 'none';
       });
     }
-  
+
     async function pollState() {
       try {
         const res = await fetch('/get_presentation_state');
         const data = await res.json();
         if (data.section === 'show_results') {
-          window.location.href = '/show_results'; // This now calls your proper route
+          window.location.href = '/show_results';
         } else {
           showSection(data.section);
         }
-        // showSection(data.section);
       } catch (err) {
         console.error("Error fetching presentation state:", err);
       }
     }
-  
-    setInterval(pollState, 2000); // Poll every 2 seconds
-    pollState(); // Initial load
+
+    setInterval(pollState, 2000);
+    pollState();
   </script>
-  
+
+  <script>
+    // Load YouTube API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+
+    // Called by YouTube API
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('introVideo', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // Handle state change
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        // Fade out the intro video and fade in the QR code
+        const intro = document.getElementById('intro');
+        const qr = document.getElementById('qr');
+
+        intro.classList.remove('show');
+        intro.classList.add('fade');
+
+        qr.classList.remove('fade');
+        qr.classList.add('show');
+      }
+    }
+  </script>
+
 </body>
 </html>
