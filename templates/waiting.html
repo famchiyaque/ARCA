@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Scenario {{ scenario_number }}</title>
@@ -17,7 +17,18 @@
       </div>
     {% endif %}
 
-    {% if scenario_number == 'end' %}
+    {% if scenario_number != 5 %}
+      <h2>respuesta {{ scenario_number }} guardada</h2>
+      <p>{{ waiting.message }}</p>
+      <form method="GET" action="{{ url_for('question', number=scenario_number|int + 1) }}">
+        <button type="submit">Continuar</button>
+      </form>
+    {% else %}
+      <h2>respuesta 5 guardado...</h2>
+      <p>De favor dirigir su atención a la pantalla principal, ya puedes cerrar esta pestaña.</p>
+    {% endif %}
+
+    <!-- {% if scenario_number == 'end' %}
       <h2>respuesta 5 guardado...</h2>
       <p>De favor dirigir su atención a la pantalla principal para ver los resultados.</p>
       <p>Ya puedes cerrar esta pestaña</p>
@@ -27,21 +38,6 @@
         <form method="GET" action="{{ url_for('question', number=scenario_number|int + 1) }}">
           <button type="submit">Continue</button>
         </form>
-    {% endif %}
-
-    <!-- <h2>respuesta {{ scenario_number }} guardado...</h2> -->
-
-    <!-- {% if scenario_number != 'end' %}
-      {% if scenario_number|int == 5 %}
-        <p>De favor dirigir su atención a la pantalla principal para ver los resultados.</p>
-      {% else %}
-        <p>De favor esperar hasta que el host le indique continuar al siguiente escenario.</p>
-        <form method="GET" action="{{ url_for('question', number=scenario_number|int + 1) }}">
-          <button type="submit">Continue</button>
-        </form>
-      {% endif %}
-    {% else %}
-      <p>You have completed all scenarios.</p>
     {% endif %} -->
 
   </div>

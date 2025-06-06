@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -15,7 +16,7 @@
     <form method="post" action="/set_presentation">
       <h3>Control Presentation View</h3>
       <button name="section" value="intro">Video Intro</button>
-      <button name="section" value="qr">QR Code</button>
+      <button name="section" value="qr">Código QR</button>
       <!-- <button name="section" value="video2">Video Estructura</button>
       <button name="section" value="video3">Video Funcionalidad</button>
       <button name="section" value="video4">Video Vida Adentro</button>
@@ -26,12 +27,12 @@
     <hr>
 
     <!-- Special Actions -->
-    <form method="post" action="/show_results" style="display:inline;">
-      <button type="submit">Show Results</button>
+    <form method="get" action="/end_sim" style="display:inline;">
+      <button type="submit">Mostrar Resultados</button>
     </form>
 
-    <form method="post" action="/reset_database" style="display:inline;">
-      <button type="submit" onclick="return confirm('Are you sure? This will erase all data.')">Reset Database</button>
+    <form method="get" action="/reset_sim" style="display:inline;">
+      <button type="submit" onclick="return confirm('Are you sure? This will erase all data.')">Reiniciar Simulación</button>
     </form>
   </div>
 </body>

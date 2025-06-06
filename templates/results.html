@@ -1,22 +1,206 @@
-<!-- templates/results.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ARCA Dome Verdict</title>
+  <title>ARCA Resultado</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #f2f2f2;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      padding: 50px 0 0 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background-image 2s ease-in-out;
+    }
+
+    .background-success {
+      background-image: url("/static/bg_exito.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .background-failure {
+      background-image: url("/static/bg_falla.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  
+    h1#verdict-title {
+      font-size: 3em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+  
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+  
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  
+    #typed-message {
+      margin-top: 10px;
+      font-size: 1.4em;
+      white-space: pre-wrap;
+      /* min-height: 150px; */
+      max-width: 70vw;
+      color: white;
+      text-align: center;
+    }
+  
+    #chart-container {
+      margin-top: 50px;
+      width: 70vw;
+      max-width: 1000px;
+      height: 50vh;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+  
+    #chart-container.visible {
+      opacity: 1;
+    }
+  
+    canvas#verdictChart {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    .extra-bottom-padding {
+      padding-bottom: 100px;
+    }
+  </style>
+  
 </head>
 <body>
-  <div class="container">
-    <h2>Average Remaining Resources: {{ avg_resources }}</h2>
-    <!-- <h1>{{ verdict }}</h1> -->
-    <!-- <p>Thanks for participating, {{ name }}.</p> -->
-    <h3>Your responses:</h3>
-    <ul>
-      {% for q, a in answers %}
-        <li><strong>{{ q }}</strong>: {{ a }}</li>
-      {% endfor %}
-    </ul>
+  <h1 id="verdict-title" class="fade-in">
+    {% if pointsDomo > pointsFuera %}
+      <span style="color: green;">Proyecto ARCA fue un éxito</span>
+    {% else %}
+      <span style="color: red;">Proyecto ARCA falló</span>
+    {% endif %}
+  </h1>
+
+  <div id="typed-message"></div>
+
+  <div id="chart-container">
+    <canvas id="verdictChart"></canvas>
   </div>
+
+  <div id="results-data"
+     data-domo="{{ pointsDomo }}"
+     data-fuera="{{ pointsFuera }}">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const resultsData = document.getElementById('results-data');
+    const pointsDomo = parseInt(resultsData.dataset.domo);
+    const pointsFuera = parseInt(resultsData.dataset.fuera);
+
+    const isSuccess = pointsDomo > pointsFuera;
+    const body = document.body;
+
+    if (isSuccess) {
+      body.classList.add('background-success');
+    } else {
+      body.classList.add('background-failure');
+    }
+ 
+    const messageSuccess = `El Proyecto ARCA ha sido salvado.\n\nGracias a la obediencia, el sacrificio y la voluntad colectiva de los habitantes del domo, la misión ha sido un éxito. La humanidad tiene una segunda oportunidad.`;
+    
+    const messageFailure = `El Proyecto ARCA ha fallado.\n\nLa naturaleza humana —egoísta, libre e indisciplinada— ha roto el delicado equilibrio. El futuro de la humanidad se pierde entre los escombros.`;
+
+    const fullMessage = isSuccess ? messageSuccess : messageFailure;
+
+    const messageContainer = document.getElementById('typed-message');
+    let i = 0;
+
+    function typeMessage() {
+      if (i < fullMessage.length) {
+        messageContainer.innerHTML += fullMessage.charAt(i);
+        i++;
+        setTimeout(typeMessage, 35); // typing speed
+      } else {
+        showChart(); // when done typing, show the chart
+      }
+    }
+
+    function showChart() {
+      const chartContainer = document.getElementById('chart-container');
+      chartContainer.classList.add('visible');
+
+      const ctx = document.getElementById('verdictChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Domo', 'Fuera del Domo'],
+          datasets: [{
+            label: 'Puntos',
+            data: [pointsDomo, pointsFuera],
+            backgroundColor: ['#4CAF50', '#F44336'],
+            borderRadius: 10,
+            borderSkipped: false,
+            barThickness: 80
+          }]
+        },
+        options: {
+          animation: {
+            duration: 1500,
+            easing: 'easeOutQuart'
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: -1,  // a little negative space for aesthetics
+              ticks: {
+                stepSize: 1,
+                precision: 0,  // no decimal points
+                color: '#fff'
+              },
+              grid: {
+                color: 'rgba(255,255,255,0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#fff'
+              },
+              grid: {
+                display: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: '#222',
+              titleColor: '#fff',
+              bodyColor: '#ddd'
+            }
+          }
+        }
+      });
+    };
+
+    document.getElementById('chart-container').classList.add('extra-bottom-padding');
+
+    window.onload = () => {
+      setTimeout(typeMessage, 2000); // wait for title fade-in
+    };
+  </script>
 </body>
 </html>

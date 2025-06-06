@@ -1,6 +1,6 @@
 <!-- templates/start.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Inicio ARCA</title>
@@ -19,8 +19,8 @@
       Contesta honestamente, y recuerda que el destino de este nuevo mundo está en tus manos.
     </p>
     <!-- <p>The world is no longer as you know it. Answer the following questions truthfully, for the fate of this new society depends on it.</p> -->
-    <form method="POST" action="/start">
-      <input type="text" name="name" class="start-input" placeholder="Ingresa tu nombre" required /><br></br>
+    <form method="GET" action="question/1">
+      <!-- <input type="text" class="start-input" placeholder="Ingresa tu nombre" required /><br></br> -->
       <button type="submit">Start</button>
     </form>
   </div>

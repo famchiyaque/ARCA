@@ -12,14 +12,11 @@ CREATE TABLE users (
 ''')
 
 c.execute('''
-CREATE TABLE answers (
+CREATE TABLE entities (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    question_number INTEGER,
-    answer TEXT,
-    resources INTEGER DEFAULT 10,
-    FOREIGN KEY(user_id) REFERENCES users(id)
-)
+    pointsDomo INTEGER DEFAULT 0,
+    pointsFuera INTEGER DEFAULT 0          
+)       
 ''')
 
 conn.commit()

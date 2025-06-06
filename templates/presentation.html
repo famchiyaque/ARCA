@@ -81,20 +81,6 @@
     <h1 class="opener-title">5. El Dilemna</h1> 
     <video id="vid1" src="/static/arca_intro.mp4" autoplay controls></video>
   </div> -->
-
-  <!-- <script>
-    function nextVideo(currentId, nextId) {
-      const current = document.getElementById(currentId);
-      const next = document.getElementById(nextId);
-
-      current.classList.add('fade-out');
-      setTimeout(() => {
-        current.style.display = 'none';
-        current.classList.remove('fade-out');
-        next.style.display = 'flex';
-      }, 1000);
-    }
-  </script> -->
   <script>
     const allSections = ['intro', 'qr', 'video2', 'video3', 'video4', 'video5', 'video6'];
   
@@ -109,7 +95,12 @@
       try {
         const res = await fetch('/get_presentation_state');
         const data = await res.json();
-        showSection(data.section);
+        if (data.section === 'show_results') {
+          window.location.href = '/show_results'; // This now calls your proper route
+        } else {
+          showSection(data.section);
+        }
+        // showSection(data.section);
       } catch (err) {
         console.error("Error fetching presentation state:", err);
       }

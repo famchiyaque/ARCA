@@ -1,116 +1,81 @@
 [
   {
     "id": 1,
-    "station": "Structure",
-    "text": "You wake up and notice a structural creak in the main column holding the dome. It’s subtle, and reporting it would delay the day’s schedule. What do you do?",
+    "station": "La Estructura",
+    "description": "",
+    "situation": "ARCA está perfectamente zonificada: vivienda, producción, recreación, todo prediseñado. Un grupo propone crear un mercado espontáneo, sin autorización de la IA, con estructuras modulares, rutas variables y comercio no regulado.",
     "options": [
       {
-        "text": "Report it immediately. Safety first.",
-        "alignment": "dome",
-        "resourceDelta": -1
+        "text": "Mantienes el orden zonificado. Nada se sale del plan, pero la cuidad deja de ser una ciudad: es un algoritmo.",
+        "alignment": "Domo"
       },
       {
-        "text": "Wait to see if others notice too.",
-        "alignment": "neutral",
-        "resourceDelta": 0
-      },
-      {
-        "text": "Ignore it. It's probably nothing.",
-        "alignment": "freedom",
-        "resourceDelta": 0
-      },
-      {
-        "text": "Try to check it yourself.",
-        "alignment": "independent",
-        "resourceDelta": -2
+        "text": "Permites el desorden. Vuelven el error, la mezcla, la ciudad viva... pero también el desperdicio, la congestión y el conflicto.",
+        "alignment": "Fuera"
       }
     ]
   },
   {
     "id": 2,
-    "station": "Functionality",
-    "text": "The AI assigns you to sewage maintenance for the week. You're a trained medical professional. What do you do?",
+    "station": "La Funcionalidad",
+    "description": "Puedes vivir en un modelo de temperatura perfecta, oxígeno constante y alimentos programados. Pero no puedes modificar el diseño, ni la disposición del espacio, ni los colores. Tu cuerpo vive cómodo. Tu mente, contenida.",
+    "situation": "Se te ofrece un traslado a una zona periférica donde puedes rediseñar tu hábitat, cultivar tu comida y pintar tus paredes. Pero no hay protección contra los gases del exterior ni garantía de alimento diario.",
     "options": [
       {
-        "text": "Obey without question.",
-        "alignment": "dome",
-        "resourceDelta": -1
+        "text": "Te mudas. Ganas libertad y creatividad, pero tu salud y seguridad se vuelven inciertas.",
+        "alignment": "Fuera"
       },
       {
-        "text": "Ask the AI for reassignment.",
-        "alignment": "neutral",
-        "resourceDelta": 0
-      },
-      {
-        "text": "Refuse the task.",
-        "alignment": "freedom",
-        "resourceDelta": -2
-      },
-      {
-        "text": "Secretly sabotage your assignment to avoid doing it.",
-        "alignment": "rebellion",
-        "resourceDelta": -3
+        "text": "Te quedas. Tu salud física está asegurada. Pierdes toda capacidad de expresarte y de habitar con tu esencia en tu espacio.",
+        "alignment": "Domo"
       }
     ]
   },
   {
     "id": 3,
-    "station": "Life Inside",
-    "text": "Every day is the same. You begin to feel numb. Do you suggest to others a secret storytelling circle at night?",
+    "station": "La Vida por Dentro",
+    "description": "",
+    "situation": "Puedes mantener una caja de recuerdos (fotos, libros, recuerdos de tus seres queridos), pero para eso deberás sacrificar el sistema de almacenamiento automático y aceptar vivir con espacio limitado.",
     "options": [
       {
-        "text": "Yes.",
-        "alignment": "freedom",
-        "resourceDelta": 1
+        "text": "Vives con tus objetos. Son tuyos, pero ahora el espacio es denso, pesado, manual y vives más limitado.",
+        "alignment": "Fuera"
       },
       {
-        "text": "No.",
-        "alignment": "dome",
-        "resourceDelta": 0
+        "text": "Vives sin nada. Todo funciona. Todo es neutro. No hay polvo, no hay historia pero tienes todas las comodidades a tu alcance.",
+        "alignment": "Domo"
       }
     ]
   },
   {
     "id": 4,
-    "station": "Life Outside",
-    "text": "Someone from outside knocks at the airlock. They are starving. The AI forbids entry. What do you do?",
+    "station": "La Vida por Fuera",
+    "description": "En ARCA, cada espacio está destinado a una función fija. Tú quieres un espacio libre: sin asignación, sin protocolo. Que los habitantes decidan cada día qué hacer con él.",
+    "situation": "Pero eso significa que el sistema de optimización fallará. No podrá predecir usos, consumos ni comportamientos. El espacio dejará de ser 'eficiente'.",
     "options": [
       {
-        "text": "Let them in.",
-        "alignment": "freedom",
-        "resourceDelta": -2
+        "text": "Dejas el espacio sin libertad. Todo se comporta como debe... pero nadie puede improvisar dejándolo sin propósito pero mantienes el sistema en equilibrio pero con qué sentido.",
+        "alignment": "Domo"
       },
       {
-        "text": "Follow protocol and walk away.",
-        "alignment": "dome",
-        "resourceDelta": 0
-      },
-      {
-        "text": "Leave some supplies outside.",
-        "alignment": "compassionate",
-        "resourceDelta": -1
-      },
-      {
-        "text": "Ask others to challenge the AI's command.",
-        "alignment": "rebellion",
-        "resourceDelta": -2
+        "text": "Lo liberas. Aparece la incertidumbre, el caos... y la posibilidad de nuevas formas de habitar dándole u propósito y haciendo que las personas se sientan identificadas.",
+        "alignment": "Fuera"
       }
     ]
   },
   {
     "id": 5,
-    "station": "Final Decision",
-    "text": "Two helmets are presented: one for the Dome (safety, unity) and one for Outside (freedom, risk). Which do you choose?",
+    "station": "¿Estás Dentro?",
+    "description": "",
+    "situation": "¿Prefieres habitar un sistema que ya no necesita de ti para funcionar? ¿O construir, con esfuerzo, un lugar que aún reconoce tu presencia?",
     "options": [
       {
-        "text": "The AI helmet.",
-        "alignment": "dome",
-        "resourceDelta": 0
+        "text": "El Exterior: entorno inestable, escaso, erosionado. Nada está segura, excepto tu voz. La arquitectura es frágil. Puedes fallar. Puedes imaginar.",
+        "alignment": "Fuera"
       },
       {
-        "text": "The freedom helmet.",
-        "alignment": "freedom",
-        "resourceDelta": 0
+        "text": "El Interior: espacios optimizados, sin errores ni sorpresas. Recursos garantizados. Sin carencias... pero sin elección. Arquitectura perfecta, pero ajena.",
+        "alignment": "Domo"
       }
     ]
   }
